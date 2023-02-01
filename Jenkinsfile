@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  
+  environment {
+    instancePrivateIp = ""
+  }
 
   stages {
     stage('checkout') {
@@ -22,6 +26,10 @@ pipeline {
       
       steps {
         sh ('terraform apply -auto-approve')
+      }
+      
+      script {
+        instancePrivateIp = sh(returnStdout: true, script: "terraform output private_ip").trim()
       }
     }
   }
