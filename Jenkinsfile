@@ -2,12 +2,17 @@ pipeline {
   agent any
   
   environment {
-    instancePrivateIp = ""
+    instancePrivateIp = "none"
+  }
+  
+  options {
+    timestamps()
   }
 
   stages {
     stage('checkout') {
       steps {
+        sh ('echo ${env.instancePrivateIp}')
         checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/MartinKChen/jenkins-ansible-demo-project']]])
       }
     }
