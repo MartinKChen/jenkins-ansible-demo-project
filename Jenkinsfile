@@ -30,6 +30,8 @@ pipeline {
         script {
           instancePrivateIp = sh(returnStdout: true, script: "terraform output private_ip").trim()
         }
+        
+        sh ('echo ${instancePrivateIp}')
       }
     }
   }
