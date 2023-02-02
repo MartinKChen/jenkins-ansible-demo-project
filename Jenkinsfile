@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage('checkout') {
       steps {
-        sh ('echo ${env.instancePrivateIp}')
+        sh ('echo $instancePrivateIp')
         checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/MartinKChen/jenkins-ansible-demo-project']]])
       }
     }
