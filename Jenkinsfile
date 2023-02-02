@@ -7,6 +7,7 @@ pipeline {
   
   options {
     timestamps()
+    skipDefaultCheckout()
   }
 
   stages {
@@ -36,7 +37,7 @@ pipeline {
           instancePrivateIp = sh(returnStdout: true, script: "terraform output private_ip").trim()
         }
         
-        sh ('echo ${env.instancePrivateIp}')
+        sh ('echo $instancePrivateIp')
       }
     }
   }
