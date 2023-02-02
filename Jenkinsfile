@@ -26,10 +26,10 @@ pipeline {
       
       steps {
         sh ('terraform apply -auto-approve')
-      }
-      
-      script {
-        instancePrivateIp = sh(returnStdout: true, script: "terraform output private_ip").trim()
+        
+        script {
+          instancePrivateIp = sh(returnStdout: true, script: "terraform output private_ip").trim()
+        }
       }
     }
   }
